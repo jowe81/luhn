@@ -1,25 +1,20 @@
 const luhn = (n) => {
   /*
+    Extract check digit
     Resave n w/o check digit
-    
-    Explode n into an array that for each digit holds the digit, its multiplier, and its new value
-
-    Add the resulting digits together 
-
-    Return true if that sum % 3 === n % 3
-
+    Calculate check digit from resaved number
+    Return true if given check digit equals the calculated check digit
   */
-  
-
-
-
-  return n;
+  const givenCheckDigit = n % 10;
+  const numberWithoutCheckDigit = Math.floor(n / 10);
+  const calculatedCheckDigit = calculateLuhnCheckDigit(numberWithoutCheckDigit);
+  return givenCheckDigit === calculatedCheckDigit;
 };
 
 
 const countDigits = (n) => {
   return (n + '').length;
-}
+};
 
 const sumDigits = (n) => {
   let result = 0;
@@ -31,32 +26,30 @@ const sumDigits = (n) => {
   return result;
 };
 
-const calculateLuhnDigits = (n) => {
+const calculateLuhnCheckDigit = (n) => {
   /*
     for i=0; i++; i<#digits
-      array.unshift([thisDigit, i%2+1, thisDigit*i%2+1, thisDigit*i%2+1%10])
-
-
+      nCheck += thisResultingDigit * Math.pow(10, i)
+      remainingNumber = Math.floor(remainingNumber / 10)
+    checkDigit = 10 - sumDigits(nCheck) % 10
   */
-  const array = [];
-  let m = n;
+  let remaining = n;
+  let nCheck = 0;
   for (let i = 0; i < countDigits(n); i++) {
-    let thisDigit = m % 10;
+    let thisDigit = remaining % 10;
     let thisMultiplier = (i + 1) % 2 + 1;
     let thisProduct = thisDigit * thisMultiplier;
     let thisResultingDigit = sumDigits(thisProduct);
-    array.unshift([ thisDigit, thisMultiplier, thisProduct, thisResultingDigit]);
-    m = Math.floor(m / 10);
+    nCheck += thisResultingDigit * Math.pow(10, i);
+    remaining = Math.floor(remaining / 10);
   }
-  console.log(array);
-
+  let checkDigit = 10 - sumDigits(nCheck) % 10;
+  return checkDigit;
 };
-
-console.log(calculateLuhnDigits(7992739871));
 
 module.exports = {
   "luhn": luhn,
   "countDigits": countDigits,
-  "calculateLuhnDigits": calculateLuhnDigits,
+  "calculateLuhnCheckDigit": calculateLuhnCheckDigit,
   "sumDigits": sumDigits,
 };
