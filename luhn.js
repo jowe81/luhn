@@ -11,10 +11,7 @@ const luhn = (n) => {
   return givenCheckDigit === calculatedCheckDigit;
 };
 
-
-const countDigits = (n) => {
-  return (n + '').length;
-};
+const countDigits = (n) => (n + '').length;
 
 const sumDigits = (n) => {
   let result = 0;
