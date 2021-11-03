@@ -1,4 +1,4 @@
-const luhn = (n) => {
+const check = (n) => {
   /*
     Extract check digit
     Resave n w/o check digit
@@ -45,7 +45,7 @@ const calculateLuhnCheckDigit = (n) => {
 };
 
 module.exports = {
-  "luhn": luhn,
+  "check": check,
   "countDigits": countDigits,
   "calculateLuhnCheckDigit": calculateLuhnCheckDigit,
   "sumDigits": sumDigits,

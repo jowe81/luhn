@@ -56,27 +56,27 @@ describe("luhn verification", () => {
   });
 
   it("should return true for 79927398713", () => {
-    assert.equal(luhn.luhn(79927398713), true);
+    assert.equal(luhn.check(79927398713), true);
   });
 
   it("should return false for 79927398813", () => {
-    assert.equal(luhn.luhn(79927398813), false);
+    assert.equal(luhn.check(79927398813), false);
   });
 
   it("should return true for 73891764", () => {
-    assert.equal(luhn.luhn(73891764), true);
+    assert.equal(luhn.check(73891764), true);
   });
 
   it("should return false for 73981764", () => {
-    assert.equal(luhn.luhn(73981764), false);
+    assert.equal(luhn.check(73981764), false);
   });
 
   it("should return true for 2551389816", () => {
-    assert.equal(luhn.luhn(2551389816), true);
+    assert.equal(luhn.check(2551389816), true);
   });
 
   it("should return false for 2551389876", () => {
-    assert.equal(luhn.luhn(2551389876), false);
+    assert.equal(luhn.check(2551389876), false);
   });
 
 });
